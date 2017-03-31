@@ -16,9 +16,22 @@ module.exports = function(app){
         res.send(cat);
     });
 
-    app.post('/cats', function(req, res){ 
-        console.log(req.body);
-        //_cats.push()
-       // res.send(cat);
+    app.post('/cats', function(req, res){
+        _cats.push(req.body)
+        res.sendStatus(200);
     });
+
+    app.put('/cats',  function(req, res){
+        let index = _.findIndex( _cats, {'id': parseInt(req.body.id) });
+        _.merge( _cats[index], req.body);
+        res.send(_cats[index]);
+    });
+
+
+    app.delete('/cats/:id',  function(req, res){
+       _.remove( _cats, {'id': parseInt(req.params.id) });
+       res.send(_cats);
+    });
+
+
 }
