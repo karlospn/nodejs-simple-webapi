@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var Cat = require('./mongoose_models/cat_model');
+var Cat = require('./../models/cat_model');
 
 module.exports = function(app){
 

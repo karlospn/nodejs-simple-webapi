@@ -11,10 +11,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-
-//var cats = require('./cats_in_memory')(app);
-var cats = require('./cats_mongodb')(app);
-var main = require('./main')(app);
+//var cats = require('./routes/cats_in_memory')(app);
+var cats = require('./routes/cats')(app);
 
 var server = app.listen(8000, function(){
     console.log('Server running on localhost:8000');
