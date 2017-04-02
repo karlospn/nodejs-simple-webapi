@@ -1,5 +1,6 @@
-var _ = require('lodash');
 var Dog = require('./../models/dog_model');
+var Merge = require('../utils/merge');
+
 
 module.exports = function(app){
 
@@ -37,7 +38,9 @@ module.exports = function(app){
                 res.json({info : 'error finding dog', error: err});
             else
                 if(dog){
-                    _.merge(dog, req.body);
+
+                     let mergeService = new Merge(dog, req.body);
+                    mergeService.merge();
                     dog.save(function(err){
                         if(err)
                             res.json({info : 'error updating dog', error: err});

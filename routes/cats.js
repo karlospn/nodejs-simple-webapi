@@ -1,5 +1,5 @@
-var _ = require('lodash');
 var Cat = require('./../models/cat_model');
+var Merge = require('../utils/merge');
 
 module.exports = function(app){
 
@@ -37,7 +37,8 @@ module.exports = function(app){
                 res.json({info : 'error finding cat', error: err});
             else
                 if(cat){
-                    _.merge(cat, req.body);
+                    let mergeService = new Merge(cat, req.body);
+                    mergeService.merge();
                     cat.save(function(err){
                         if(err)
                             res.json({info : 'error updating cat', error: err});
